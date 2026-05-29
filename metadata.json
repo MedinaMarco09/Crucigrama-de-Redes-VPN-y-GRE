@@ -1,0 +1,6 @@
+{
+  "name": "Crucigrama de Redes: VPN y GRE",
+  "description": "Un crucigrama interactivo para aprender y repasar conceptos de VPN, túneles GRE y seguridad de redes, con validación en tiempo real, puntaje y tabla de clasificaciones.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
