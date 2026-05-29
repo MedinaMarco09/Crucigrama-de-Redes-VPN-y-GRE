@@ -787,10 +787,10 @@ export default function App() {
       {/* FOOTER METRICS */}
       <footer className="border-t border-slate-900 py-6 text-center select-none bg-slate-950 px-6">
         <p className="text-xs text-slate-600 font-mono">
-          DESARROLLADO EN CHASSIS INTEGRADO • PROTOCOLO DE INSPECCIÓN: VPN / TUNEL GRE CONTROLS
+          DESARROLLADO POR MARCOMG • PROTOCOLO DE INSPECCIÓN: VPN / TUNEL GRE CONTROLS
         </p>
         <p className="text-[10px] text-slate-700 font-mono mt-1">
-          Port: 3000 • Protocolo Local Enrutable • Versión React 19 CISCO LABS
+         • Versión React 19 CISCO LABS
         </p>
       </footer>
 
@@ -988,6 +988,26 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* TEAM WATERMARK */}
+      <div 
+        id="team-watermark"
+        className="fixed bottom-3 right-4 z-10 pointer-events-none select-none text-right opacity-25 hover:opacity-100 transition-opacity duration-300 hidden sm:block"
+        style={{ contentVisibility: 'auto' }}
+      >
+        <span className="font-mono text-[8px] text-blue-500 uppercase tracking-widest font-bold block mb-0.5">
+          Integrantes / Diseñado por:
+        </span>
+        <div className="font-sans text-xs font-black text-slate-100 tracking-wider">
+          Equipo slim
+        </div>
+        <div className="font-mono text-[10px] text-slate-400 space-y-0.5 mt-0.5 leading-tight">
+          <div>Camacho Martinez Kassandra Judith</div>
+          <div>Marquez Aguilar Soren Cristobal</div>
+          <div>Medina Garciglia Marco Antonio</div>
+          <div>De la Torre Sui Qui Vìctor Josè</div>
+        </div>
+      </div>
 
     </div>
   );
