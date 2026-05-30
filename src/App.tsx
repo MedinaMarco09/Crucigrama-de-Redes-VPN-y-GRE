@@ -733,6 +733,30 @@ export default function App() {
                   onNavigate={handleGridNavigation}
                 />
 
+                {/* WORD BANK / OPTIONS */}
+                <div className="w-full mt-6 p-4 bg-slate-900/40 rounded-2xl border border-slate-800/80">
+                  <h3 className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <ListFilter className="w-3 h-3" /> Banco de Palabras (Opciones)
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {Array.from(new Set(CLUES.map(c => c.word))).sort().map(word => {
+                      const isFound = Array.from(correctClueIds).some(cid => CLUES.find(c => c.id === cid)?.word === word);
+                      return (
+                        <span 
+                          key={word}
+                          className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-all border ${
+                            isFound 
+                              ? 'bg-blue-500/10 border-blue-500/20 text-blue-400 line-through opacity-40' 
+                              : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200'
+                          }`}
+                        >
+                          {word}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 {/* BOARD ACTION BAR */}
                 <div className="w-full flex-wrap gap-2.5 flex justify-center items-center mt-4">
                   {gameMode === 'estandar' && (
@@ -854,10 +878,13 @@ export default function App() {
 
               <div className="flex gap-4">
                 <button
-                  onClick={() => setIsGameActive(false)}
+                  onClick={() => {
+                    setIsGameActive(false);
+                    setIsGameCompleted(false);
+                  }}
                   className="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold font-sans py-3 rounded-xl transition cursor-pointer active:translate-y-[1px] text-sm"
                 >
-                  Ver Clasificaciones (Salir)
+                  Volver al Menú Principal
                 </button>
                 <button
                   onClick={handleStartGame}
@@ -989,25 +1016,27 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* TEAM WATERMARK */}
-      <div 
-        id="team-watermark"
-        className="fixed bottom-3 right-4 z-10 pointer-events-none select-none text-right opacity-25 hover:opacity-100 transition-opacity duration-300 hidden sm:block"
-        style={{ contentVisibility: 'auto' }}
-      >
-        <span className="font-mono text-[8px] text-blue-500 uppercase tracking-widest font-bold block mb-0.5">
-          Integrantes / Diseñado por:
-        </span>
-        <div className="font-sans text-xs font-black text-slate-100 tracking-wider">
-          Equipo slim
+      {/* TEAM WATERMARK (Visible only on home screen) */}
+      {!isGameActive && (
+        <div 
+          id="team-watermark"
+          className="fixed bottom-3 right-4 z-10 pointer-events-none select-none text-right opacity-25 hover:opacity-100 transition-opacity duration-300 hidden sm:block"
+          style={{ contentVisibility: 'auto' }}
+        >
+          <span className="font-mono text-[8px] text-blue-500 uppercase tracking-widest font-bold block mb-0.5">
+            Integrantes / Diseñado por:
+          </span>
+          <div className="font-sans text-xs font-black text-slate-100 tracking-wider">
+            Equipo slim
+          </div>
+          <div className="font-mono text-[10px] text-slate-400 space-y-0.5 mt-0.5 leading-tight">
+            <div>Camacho Martinez Kassandra Judith</div>
+            <div>Marquez Aguilar Soren Cristobal</div>
+            <div>Medina Garciglia Marco Antonio</div>
+            <div>De la Torre Sui Qui Vìctor Josè</div>
+          </div>
         </div>
-        <div className="font-mono text-[10px] text-slate-400 space-y-0.5 mt-0.5 leading-tight">
-          <div>Camacho Martinez Kassandra Judith</div>
-          <div>Marquez Aguilar Soren Cristobal</div>
-          <div>Medina Garciglia Marco Antonio</div>
-          <div>De la Torre Sui Qui Vìctor Josè</div>
-        </div>
-      </div>
+      )}
 
     </div>
   );

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Cell, Direction } from '../types';
 import { motion } from 'motion/react';
 
@@ -29,6 +29,16 @@ export const CrosswordGrid: React.FC<CrosswordGridProps> = ({
   onNavigate,
 }) => {
   
+  // Auto-focus current cell whenever it changes
+  useEffect(() => {
+    if (selectedCell) {
+      const input = document.getElementById(`cell-input-${selectedCell.row}-${selectedCell.col}`) as HTMLInputElement | null;
+      if (input) {
+        input.focus();
+      }
+    }
+  }, [selectedCell, activeDirection]);
+
   // Detect if a cell belongs to the currently active word
   const isCellInActiveWord = (cell: Cell) => {
     if (!selectedCell) return false;
